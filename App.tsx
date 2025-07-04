@@ -17,5 +17,8 @@ export default App;
 const styles = StyleSheet.create({
   appContainer: {
     flex: 1,
+    alignItems: 'center',
+    gap: 20,
+    marginTop: 60,
   },
 });

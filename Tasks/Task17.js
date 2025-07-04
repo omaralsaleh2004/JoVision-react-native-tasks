@@ -1,16 +1,16 @@
-// Tasks/Task16.tsx
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 
 const Task17 = () => {
-  const [showText, setShowText] = useState(true);
+  const [showText, setShowText] = useState(false);
   const handlePressButton = () => {
     setShowText(!showText);
   };
   return (
-    <View style={styles.container}>
+    <View>
+      <Text style={{ marginBottom: 7, fontSize: 22 }}>Task 17 :</Text>
       {showText && <Text style={styles.title}>Omar</Text>}
-      <Button title="Show" onPress={handlePressButton} />
+      <Button title={showText ? 'Hide' : 'Show'} onPress={handlePressButton} />
     </View>
   );
 };
@@ -18,10 +18,6 @@ const Task17 = () => {
 export default Task17;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-  },
   title: {
     fontSize: 30,
   },

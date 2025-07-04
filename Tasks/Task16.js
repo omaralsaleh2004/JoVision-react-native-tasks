@@ -1,11 +1,16 @@
-// Tasks/Task16.tsx
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, Button } from 'react-native';
 
 const Task16 = () => {
+  const [showText, setShowText] = useState(false);
+  const handlePressButton = () => {
+    setShowText(!showText);
+  };
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>From Task 16</Text>
+    <View>
+      <Text style={{ marginBottom: 7, fontSize: 22 }}>Task 16 :</Text>
+      {showText && <Text style={styles.title}>Omar</Text>}
+      <Button style={styles.btn} title="Show" onPress={handlePressButton} />
     </View>
   );
 };
@@ -13,14 +18,7 @@ const Task16 = () => {
 export default Task16;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  text: {
-    fontSize: 24,
-    color: 'black',
-    fontWeight: 'bold',
+  title: {
+    fontSize: 30,
   },
 });
