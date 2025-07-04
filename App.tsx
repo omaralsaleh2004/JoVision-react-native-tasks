@@ -1,17 +1,21 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import Task16 from './Tasks/Task16';
-
-console.log('✅ This is the App.tsx you are editing!');
+import Task17 from './Tasks/Task17';
 
 const App = () => {
-  console.log('✅ This is the App.tsx you are editing!');
-
   return (
-    <View>
+    <View style={styles.appContainer}>
       <Task16 />
+      <Task17 />
     </View>
   );
 };
 
 export default App;
+
+const styles = StyleSheet.create({
+  appContainer: {
+    flex: 1,
+  },
+});
