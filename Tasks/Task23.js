@@ -6,7 +6,7 @@ const Task23 = () => {
   const [text, setText] = useState('');
 
   return (
-    <View style={styles.container}>
+    <View>
       <Text>{text}</Text>
       <MyClassComponent text={text} onChangeText={setText} />
     </View>

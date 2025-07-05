@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, View } from 'react-native';
 import MyClassComponent from '../Components/MyClassPage';
-import MyFunctionPage from '../Components/MyFucntionPage';
+import MyFunctionPage from '../Components/MyFunctionPage';
 
 const Task21 = () => {
   const [showPage, setShowPage] = useState(false);
