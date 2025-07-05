@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { View, TextInput, StyleSheet } from 'react-native';
 
 class MyClassComponent extends Component {
   componentDidMount() {
@@ -12,10 +12,24 @@ class MyClassComponent extends Component {
   render() {
     return (
       <View>
-        <Text>From My Class Component</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Type here..."
+          value={this.props.Text}
+          onChangeText={this.props.onChangeText}
+        />
       </View>
     );
   }
 }
 
 export default MyClassComponent;
+
+styles = StyleSheet.create({
+  input: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    paddingHorizontal: 10,
+  },
+});

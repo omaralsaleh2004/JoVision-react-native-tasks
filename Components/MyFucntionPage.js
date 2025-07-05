@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import { Text, View } from 'react-native';
+import { TextInput, View, StyleSheet } from 'react-native';
 
-const MyFunctionPage = () => {
+const MyFunctionPage = ({ text, onChangeText }) => {
   useEffect(() => {
     console.log('Loaded');
 
@@ -11,9 +11,23 @@ const MyFunctionPage = () => {
   }, []);
   return (
     <View>
-      <Text>From My Fucntion Page</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Type here..."
+        value={text}
+        onChangeText={onChangeText}
+      />
     </View>
   );
 };
 
 export default MyFunctionPage;
+
+styles = StyleSheet.create({
+  input: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    paddingHorizontal: 10,
+  },
+});
