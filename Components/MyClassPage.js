@@ -2,6 +2,13 @@ import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 
 class MyClassComponent extends Component {
+  componentDidMount() {
+    console.log('loaded');
+  }
+
+  componentWillUnmount() {
+    console.log('unloaded');
+  }
   render() {
     return (
       <View>
