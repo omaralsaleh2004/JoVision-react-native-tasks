@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
-import { View, TextInput, StyleSheet } from 'react-native';
+import { View, Text } from 'react-native';
 
 class MyClassComponent extends Component {
+  state = {
+    text: '',
+  };
+
   componentDidMount() {
     console.log('loaded');
   }
@@ -9,27 +13,17 @@ class MyClassComponent extends Component {
   componentWillUnmount() {
     console.log('unloaded');
   }
+
+  updateText = newText => {
+    this.setState({ text: newText });
+  };
   render() {
     return (
       <View>
-        <TextInput
-          style={styles.input}
-          placeholder="Type here..."
-          value={this.props.Text}
-          onChangeText={this.props.onChangeText}
-        />
+        <Text style={{ fontSize: 18 }}>{this.state.text}</Text>
       </View>
     );
   }
 }
 
 export default MyClassComponent;
-
-styles = StyleSheet.create({
-  input: {
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    paddingHorizontal: 10,
-  },
-});
