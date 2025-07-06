@@ -15,10 +15,7 @@ import {
 const Task28 = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [inputIndex, setInputIndex] = useState('');
-  const flatListRef = useRef(null);
-
-  const images = [
-    'https://placekitten.com/200/200',
+  const [images, setImages] = useState([
     'https://placebear.com/200/200',
     'https://picsum.photos/200/200?1',
     'https://picsum.photos/200/200?2',
@@ -29,7 +26,9 @@ const Task28 = () => {
     'https://picsum.photos/200/200?7',
     'https://picsum.photos/200/200?8',
     'https://picsum.photos/200/200?9',
-  ];
+  ]);
+
+  const flatListRef = useRef(null);
 
   const scrollToImage = () => {
     const index = parseInt(inputIndex);
@@ -45,24 +44,30 @@ const Task28 = () => {
     }
   };
 
+  const handleDeleteImage = index => {
+    const newImages = images.filter((_, i) => i !== index);
+    setImages(newImages);
+  };
   return (
     <View style={styles.container}>
       <Button title="Image Index" onPress={() => setModalVisible(true)} />
-
       <FlatList
         ref={flatListRef}
         data={images}
         horizontal
         keyExtractor={index => index.toString()}
         renderItem={({ item, index }) => (
-          <Pressable
-            onPress={() => Alert.alert('Image', `You selected image ${index}`)}
-          >
+          <View>
             <Image source={{ uri: item }} style={styles.image} />
-          </Pressable>
+            <Pressable
+              style={styles.deleteButton}
+              onPress={() => handleDeleteImage(index)}
+            >
+              <Text style={styles.deleteText}>X</Text>
+            </Pressable>
+          </View>
         )}
       />
-
       <Modal visible={modalVisible}>
         <View style={styles.modal}>
           <Text>Enter image index:</Text>
@@ -102,5 +107,24 @@ const styles = StyleSheet.create({
     width: '100%',
     padding: 8,
     marginVertical: 10,
+  },
+
+  deleteButton: {
+    position: 'absolute',
+    top: 5,
+    right: 5,
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    backgroundColor: 'black',
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 1,
+  },
+  deleteText: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 14,
+    lineHeight: 14,
   },
 });
