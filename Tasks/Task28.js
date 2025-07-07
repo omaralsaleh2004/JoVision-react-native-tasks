@@ -48,6 +48,12 @@ const Task28 = () => {
     const newImages = images.filter((_, i) => i !== index);
     setImages(newImages);
   };
+
+  const handleAddImage = index => {
+    const newImages = [...images];
+    newImages.splice(index + 1, 0, images[index]);
+    setImages(newImages);
+  };
   return (
     <View style={styles.container}>
       <Button title="Image Index" onPress={() => setModalVisible(true)} />
@@ -64,6 +70,12 @@ const Task28 = () => {
               onPress={() => handleDeleteImage(index)}
             >
               <Text style={styles.deleteText}>X</Text>
+            </Pressable>
+            <Pressable
+              style={styles.addButton}
+              onPress={() => handleAddImage(index)}
+            >
+              <Text style={styles.doubleText}>+</Text>
             </Pressable>
           </View>
         )}
@@ -126,5 +138,23 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 14,
     lineHeight: 14,
+  },
+  doubleText: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 14,
+    lineHeight: 14,
+  },
+  addButton: {
+    position: 'absolute',
+    top: 5,
+    right: 82,
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    backgroundColor: 'black',
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 1,
   },
 });
