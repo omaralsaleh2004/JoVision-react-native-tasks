@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Pressable } from 'react-native';
+import { View, Text, Pressable, StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer, useTheme } from '@react-navigation/native';
 
@@ -9,16 +9,10 @@ function MyTabBar({ state, descriptors, navigation }) {
   const { colors } = useTheme();
 
   return (
-    <View style={{ flexDirection: 'row' }}>
+    <View style={{ flexDirection: 'row', width: '100%' }}>
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
-        const label =
-          options.tabBarLabel !== undefined
-            ? options.tabBarLabel
-            : options.title !== undefined
-            ? options.title
-            : route.name;
-
+        const label = options.tabBarLabel ?? options.title ?? route.name;
         const isFocused = state.index === index;
 
         const onPress = () => {
@@ -27,51 +21,25 @@ function MyTabBar({ state, descriptors, navigation }) {
             target: route.key,
             canPreventDefault: true,
           });
-
           if (!isFocused && !event.defaultPrevented) {
             navigation.navigate(route.name);
           }
         };
 
-        const onLongPress = () => {
-          navigation.emit({
-            type: 'tabLongPress',
-            target: route.key,
-          });
-        };
-
         return (
           <Pressable
             key={route.key}
-            accessibilityRole="button"
-            accessibilityState={isFocused ? { selected: true } : {}}
-            accessibilityLabel={options.tabBarAccessibilityLabel}
-            testID={options.tabBarTestID}
             onPress={onPress}
-            onLongPress={onLongPress}
             style={{
               flex: 1,
               paddingVertical: 12,
-              paddingHorizontal: 10,
               backgroundColor: isFocused ? colors.primary : colors.background,
               alignItems: 'center',
               justifyContent: 'center',
-              borderRadius: 8,
-              marginHorizontal: 4,
-              marginVertical: 6,
-              shadowColor: '#000',
-              shadowOpacity: 0.1,
-              shadowOffset: { width: 0, height: 2 },
-              shadowRadius: 4,
-              elevation: 3,
             }}
           >
             <Text
-              style={{
-                color: isFocused ? '#fff' : colors.text,
-                fontSize: 16,
-                fontWeight: '600',
-              }}
+              style={{ color: isFocused ? '#fff' : colors.text, fontSize: 16 }}
             >
               {label}
             </Text>
@@ -84,32 +52,104 @@ function MyTabBar({ state, descriptors, navigation }) {
 
 function HomeScreen({ navigation }) {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Home Screen</Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>Home Screen</Text>
+      <Pressable
+        style={styles.button}
+        onPress={() => navigation.navigate('Profile')}
+      >
+        <Text style={styles.buttonText}>Go to Profile</Text>
+      </Pressable>
+      <Pressable
+        style={styles.button}
+        onPress={() => navigation.navigate('About')}
+      >
+        <Text style={styles.buttonText}>Go to About</Text>
+      </Pressable>
+      <Pressable
+        style={styles.button}
+        onPress={() => navigation.navigate('Edit')}
+      >
+        <Text style={styles.buttonText}>Go to Edit</Text>
+      </Pressable>
     </View>
   );
 }
 
-function ProfileScreen() {
+function ProfileScreen({ navigation }) {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Profile Screen</Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>Profile Screen</Text>
+      <Pressable
+        style={styles.button}
+        onPress={() => navigation.navigate('Home')}
+      >
+        <Text style={styles.buttonText}>Go to Home</Text>
+      </Pressable>
+      <Pressable
+        style={styles.button}
+        onPress={() => navigation.navigate('About')}
+      >
+        <Text style={styles.buttonText}>Go to About</Text>
+      </Pressable>
+      <Pressable
+        style={styles.button}
+        onPress={() => navigation.navigate('Edit')}
+      >
+        <Text style={styles.buttonText}>Go to Edit</Text>
+      </Pressable>
     </View>
   );
 }
 
-function AboutScreen() {
+function AboutScreen({ navigation }) {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>About Screen</Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>About Screen</Text>
+      <Pressable
+        style={styles.button}
+        onPress={() => navigation.navigate('Home')}
+      >
+        <Text style={styles.buttonText}>Go to Home</Text>
+      </Pressable>
+      <Pressable
+        style={styles.button}
+        onPress={() => navigation.navigate('Profile')}
+      >
+        <Text style={styles.buttonText}>Go to Profile</Text>
+      </Pressable>
+      <Pressable
+        style={styles.button}
+        onPress={() => navigation.navigate('Edit')}
+      >
+        <Text style={styles.buttonText}>Go to Edit</Text>
+      </Pressable>
     </View>
   );
 }
 
-function EditScreen() {
+function EditScreen({ navigation }) {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Edit Screen</Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>Edit Screen</Text>
+      <Pressable
+        style={styles.button}
+        onPress={() => navigation.navigate('Home')}
+      >
+        <Text style={styles.buttonText}>Go to Home</Text>
+      </Pressable>
+      <Pressable
+        style={styles.button}
+        onPress={() => navigation.navigate('Profile')}
+      >
+        <Text style={styles.buttonText}>Go to Profile</Text>
+      </Pressable>
+      <Pressable
+        style={styles.button}
+        onPress={() => navigation.navigate('About')}
+      >
+        <Text style={styles.buttonText}>Go to About</Text>
+      </Pressable>
     </View>
   );
 }
@@ -126,3 +166,28 @@ export default function Task41() {
     </NavigationContainer>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 10,
+  },
+  title: {
+    fontSize: 24,
+    marginBottom: 20,
+    fontWeight: 'bold',
+  },
+  button: {
+    backgroundColor: 'blue',
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    borderRadius: 8,
+    marginTop: 10,
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 16,
+  },
+});
