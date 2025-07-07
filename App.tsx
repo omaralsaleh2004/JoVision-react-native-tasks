@@ -15,6 +15,7 @@ import Task27 from './Tasks/Task27';
 import Task28 from './Tasks/Task28';
 import Task32 from './Tasks/Task32';
 import Task33 from './Tasks/Task33';
+import Task34 from './Tasks/Task34';
 
 const App = () => {
   return (
@@ -42,8 +43,10 @@ const App = () => {
       <Task28 />
        
       <Task32 />
-      */}
+      
       <Task33 />
+      */}
+      <Task34 />
     </View>
   );
 };
