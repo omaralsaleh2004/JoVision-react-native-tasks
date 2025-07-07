@@ -21,6 +21,7 @@ import Task36 from './Tasks/Task36';
 import Task38 from './Tasks/Task38';
 import Task39 from './Tasks/Task39';
 import Task40 from './Tasks/Task40';
+import Task41 from './Tasks/Task41';
 
 const App = () => {
   return (
@@ -60,8 +61,10 @@ const App = () => {
       <Task38 />
        
       <Task39 />
-      */}
+      
       <Task40/>
+     */}
+      <Task41 />
     </View>
   );
 };
@@ -71,8 +74,5 @@ export default App;
 const styles = StyleSheet.create({
   appContainer: {
     flex: 1,
-    alignItems: 'center',
-    gap: 20,
-    marginTop: 60,
   },
 });
